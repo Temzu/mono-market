@@ -1,4 +1,4 @@
-package com.temzu.monomarket.models;
+package com.temzu.monomarket.dao.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
