@@ -2,11 +2,12 @@ package com.temzu.monomarket.services;
 
 import com.temzu.monomarket.dtos.ProductDto;
 import com.temzu.monomarket.dtos.ProductCreateDto;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.util.MultiValueMap;
 
 public interface ProductService {
 
-  List<ProductDto> findAll();
+  Page<ProductDto> findPage(MultiValueMap<String, String> params, Integer page, Integer pageSize);
 
   ProductDto findById(Long id);
 
