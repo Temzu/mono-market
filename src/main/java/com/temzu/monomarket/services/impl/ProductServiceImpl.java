@@ -1,12 +1,9 @@
 package com.temzu.monomarket.services.impl;
 
-import com.temzu.monomarket.dao.services.ProductDao;
+import com.temzu.monomarket.dao.ProductDao;
 import com.temzu.monomarket.dtos.ProductCreateDto;
 import com.temzu.monomarket.dtos.ProductDto;
-import com.temzu.monomarket.exceptions.ResourceNotFoundException;
-import com.temzu.monomarket.dao.models.Product;
 import com.temzu.monomarket.dao.models.mappers.ProductMapper;
-import com.temzu.monomarket.dao.repositories.ProductRepository;
 import com.temzu.monomarket.services.ProductService;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -3,9 +3,9 @@ package com.temzu.monomarket.exceptions;
 import com.temzu.monomarket.enums.ExceptionTypes;
 import java.util.UUID;
 
-public class ResourceNotFoundException extends RuntimeException {
+public class ResourceNotFoundException extends ResourceException {
 
-  private static final String NOT_FOUND_BY = "%s not found by [%s]: %s";
+  private static final String NOT_FOUND_BY = "%s not found by %s: %s";
 
   private ResourceNotFoundException(Class<?> entityClass, ExceptionTypes type, String reason) {
     super(String.format(NOT_FOUND_BY, entityClass.getSimpleName(), type.getType(), reason));
