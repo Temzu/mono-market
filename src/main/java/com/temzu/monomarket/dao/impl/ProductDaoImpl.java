@@ -5,7 +5,11 @@ import com.temzu.monomarket.dao.repositories.ProductRepository;
 import com.temzu.monomarket.dao.ProductDao;
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;
 import java.util.List;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,8 +19,8 @@ public class ProductDaoImpl implements ProductDao {
   private final ProductRepository productRepository;
 
   @Override
-  public List<Product> findAll() {
-    return productRepository.findAll();
+  public Page<Product> findPage(@NonNull Specification<Product> spec, int page, int pageSize) {
+    return productRepository.findAll(spec, PageRequest.of(page - 1, pageSize));
   }
 
   @Override
