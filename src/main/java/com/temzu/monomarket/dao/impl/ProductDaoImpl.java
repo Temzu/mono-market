@@ -1,8 +1,8 @@
-package com.temzu.monomarket.dao.services.impl;
+package com.temzu.monomarket.dao.impl;
 
 import com.temzu.monomarket.dao.models.Product;
 import com.temzu.monomarket.dao.repositories.ProductRepository;
-import com.temzu.monomarket.dao.services.ProductDao;
+import com.temzu.monomarket.dao.ProductDao;
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

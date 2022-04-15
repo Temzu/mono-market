@@ -1,6 +1,6 @@
 package com.temzu.monomarket.dao.models.mappers;
 
-import com.temzu.monomarket.dao.services.CategoryDao;
+import com.temzu.monomarket.dao.CategoryDao;
 import com.temzu.monomarket.dtos.ProductCreateDto;
 import com.temzu.monomarket.dtos.ProductDto;
 import com.temzu.monomarket.dao.models.Product;

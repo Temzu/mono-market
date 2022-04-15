@@ -1,4 +1,4 @@
-package com.temzu.monomarket.dao.services;
+package com.temzu.monomarket.dao;
 
 import com.temzu.monomarket.dao.models.Category;
 
