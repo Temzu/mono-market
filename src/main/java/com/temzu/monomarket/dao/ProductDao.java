@@ -1,7 +1,6 @@
 package com.temzu.monomarket.dao;
 
 import com.temzu.monomarket.dao.models.Product;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -11,8 +10,10 @@ public interface ProductDao {
 
   Product findById(Long id);
 
-  void deleteById(Long id);
+  Product save(Product product);
 
-  void save(Product product);
+  Product update(Product product);
+
+  void deleteById(Long id);
 
 }
