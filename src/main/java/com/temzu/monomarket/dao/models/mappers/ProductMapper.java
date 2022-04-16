@@ -4,6 +4,7 @@ import com.temzu.monomarket.dao.CategoryDao;
 import com.temzu.monomarket.dtos.ProductCreateDto;
 import com.temzu.monomarket.dtos.ProductDto;
 import com.temzu.monomarket.dao.models.Product;
+import com.temzu.monomarket.dtos.ProductUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Component;
 public class ProductMapper {
 
   private final ModelMapper mapper;
-  private final CategoryDao categoryDao;
 
   public Product toProduct(ProductDto productDto) {
     return mapper.map(productDto, Product.class);
@@ -22,8 +22,11 @@ public class ProductMapper {
   public Product toProduct(ProductCreateDto productCreateDto) {
     Product product = mapper.map(productCreateDto, Product.class);
     product.setId(null);
-    product.setCategory(categoryDao.findById(productCreateDto.getCategoryId()));
     return product;
+  }
+
+  public Product toProduct(ProductUpdateDto productUpdateDto) {
+    return mapper.map(productUpdateDto, Product.class);
   }
 
   public ProductDto toProductDto(Product product) {

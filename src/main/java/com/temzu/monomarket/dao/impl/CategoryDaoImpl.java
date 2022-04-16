@@ -19,4 +19,11 @@ public class CategoryDaoImpl implements CategoryDao {
         .findById(id)
         .orElseThrow(() -> ResourceNotFoundException.byId(id, Category.class));
   }
+
+  @Override
+  public Category findByTitle(String title) {
+    return categoryRepository
+        .findByTitle(title)
+        .orElseThrow(() -> ResourceNotFoundException.byTitle(title, Category.class));
+  }
 }

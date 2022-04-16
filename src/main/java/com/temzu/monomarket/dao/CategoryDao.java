@@ -6,4 +6,6 @@ public interface CategoryDao {
 
   Category findById(Long id);
 
+  Category findByTitle(String title);
+
 }
