@@ -8,6 +8,7 @@ import com.temzu.monomarket.dtos.ProductUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 @Component
 @RequiredArgsConstructor
@@ -25,7 +26,7 @@ public class ProductMapper {
     return product;
   }
 
-  public Product toProduct(ProductUpdateDto productUpdateDto) {
+  public Product toProduct(@Validated ProductUpdateDto productUpdateDto) {
     return mapper.map(productUpdateDto, Product.class);
   }
 

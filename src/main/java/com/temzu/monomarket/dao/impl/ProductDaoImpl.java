@@ -3,9 +3,7 @@ package com.temzu.monomarket.dao.impl;
 import com.temzu.monomarket.dao.models.Product;
 import com.temzu.monomarket.dao.repositories.ProductRepository;
 import com.temzu.monomarket.dao.ProductDao;
-import com.temzu.monomarket.dtos.ProductDto;
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;
-import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,12 +30,12 @@ public class ProductDaoImpl implements ProductDao {
   }
 
   @Override
-  public Product save(Product product) {
-    return productRepository.save(product);
+  public boolean existById(Long id) {
+    return productRepository.existsById(id);
   }
 
   @Override
-  public Product update(Product product) {
+  public Product saveOrUpdate(Product product) {
     return productRepository.save(product);
   }
 
