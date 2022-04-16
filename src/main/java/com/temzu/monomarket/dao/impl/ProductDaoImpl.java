@@ -3,6 +3,7 @@ package com.temzu.monomarket.dao.impl;
 import com.temzu.monomarket.dao.models.Product;
 import com.temzu.monomarket.dao.repositories.ProductRepository;
 import com.temzu.monomarket.dao.ProductDao;
+import com.temzu.monomarket.dtos.ProductDto;
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;
 import java.util.List;
 import lombok.NonNull;
@@ -31,12 +32,17 @@ public class ProductDaoImpl implements ProductDao {
   }
 
   @Override
-  public void deleteById(Long id) {
-    productRepository.delete(findById(id));
+  public Product save(Product product) {
+    return productRepository.save(product);
   }
 
   @Override
-  public void save(Product product) {
-    productRepository.save(product);
+  public Product update(Product product) {
+    return productRepository.save(product);
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    productRepository.delete(findById(id));
   }
 }
