@@ -19,6 +19,7 @@
   <properties>
     <java.version>11</java.version>
     <modelmapper.version>3.1.0</modelmapper.version>
+    <validator.version>7.0.4.Final</validator.version>
   </properties>
 
   <dependencies>
@@ -54,6 +55,12 @@
       <groupId>org.modelmapper</groupId>
       <artifactId>modelmapper</artifactId>
       <version>${modelmapper.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${validator.version}</version>
     </dependency>
 
     <dependency>
