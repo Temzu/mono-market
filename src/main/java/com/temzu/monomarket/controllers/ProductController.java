@@ -4,7 +4,7 @@ import com.temzu.monomarket.dtos.ProductCreateDto;
 import com.temzu.monomarket.dtos.ProductDto;
 import com.temzu.monomarket.dtos.ProductUpdateDto;
 import com.temzu.monomarket.services.ProductService;
-import java.util.List;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.util.MultiValueMap;
@@ -29,8 +29,7 @@ public class ProductController {
   public Page<ProductDto> findPage(
       @RequestParam MultiValueMap<String, String> params,
       @RequestParam(name = "page", defaultValue = "1") Integer page,
-      @RequestParam(name = "size", defaultValue = "10") Integer pageSize
-  ) {
+      @RequestParam(name = "size", defaultValue = "10") Integer pageSize) {
     if (page < 1 || pageSize < 1) {
       page = 1;
       pageSize = 10;
@@ -43,13 +42,13 @@ public class ProductController {
     return productService.findById(id);
   }
 
-  @PostMapping("/create")
-  public ProductDto save(@RequestBody ProductCreateDto productCreateDto) {
+  @PostMapping
+  public ProductDto save(@Valid @RequestBody ProductCreateDto productCreateDto) {
     return productService.save(productCreateDto);
   }
 
-  @PutMapping("/update")
-  public ProductDto update(@RequestBody ProductUpdateDto productUpdateDto) {
+  @PutMapping
+  public ProductDto update(@Valid @RequestBody ProductUpdateDto productUpdateDto) {
     return productService.update(productUpdateDto);
   }
 
@@ -57,5 +56,4 @@ public class ProductController {
   public void deleteById(@PathVariable Long id) {
     productService.deleteById(id);
   }
-
 }

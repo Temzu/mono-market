@@ -8,9 +8,8 @@ import com.temzu.monomarket.dtos.ProductCreateDto;
 import com.temzu.monomarket.dtos.ProductDto;
 import com.temzu.monomarket.dao.models.mappers.ProductMapper;
 import com.temzu.monomarket.dtos.ProductUpdateDto;
+import com.temzu.monomarket.exceptions.ResourceNotFoundException;
 import com.temzu.monomarket.services.ProductService;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
@@ -46,14 +45,17 @@ public class ProductServiceImpl implements ProductService {
   public ProductDto save(ProductCreateDto productCreateDto) {
     Product createdProd = productMapper.toProduct(productCreateDto);
     createdProd.setCategory(categoryDao.findByTitle(productCreateDto.getCategoryTitle()));
-    return productMapper.toProductDto(productDao.save(createdProd));
+    return productMapper.toProductDto(productDao.saveOrUpdate(createdProd));
   }
 
   @Override
   public ProductDto update(ProductUpdateDto productUpdateDto) {
+    if (!productDao.existById(productUpdateDto.getId())) {
+      throw ResourceNotFoundException.byId(productUpdateDto.getId(), Product.class);
+    }
     Product updatedProd = productMapper.toProduct(productUpdateDto);
     updatedProd.setCategory(categoryDao.findByTitle(productUpdateDto.getCategoryTitle()));
-    return productMapper.toProductDto(productDao.save(updatedProd));
+    return productMapper.toProductDto(productDao.saveOrUpdate(updatedProd));
   }
 
   @Override

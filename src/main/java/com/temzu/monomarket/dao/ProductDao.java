@@ -10,9 +10,9 @@ public interface ProductDao {
 
   Product findById(Long id);
 
-  Product save(Product product);
+  boolean existById(Long id);
 
-  Product update(Product product);
+  Product saveOrUpdate(Product product);
 
   void deleteById(Long id);
 
