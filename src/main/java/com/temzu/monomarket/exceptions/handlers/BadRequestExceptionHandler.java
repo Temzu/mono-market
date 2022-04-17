@@ -1,8 +1,7 @@
 package com.temzu.monomarket.exceptions.handlers;
 
-import com.temzu.monomarket.exceptions.InvalidInputDataException;
 import com.temzu.monomarket.exceptions.MarketError;
-import java.util.HashMap;
+import com.temzu.monomarket.exceptions.UserLoginOrPasswordException;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -23,4 +22,10 @@ public class BadRequestExceptionHandler {
             .collect(Collectors.toList());
     return new ResponseEntity<>(new MarketError(messages), HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler(UserLoginOrPasswordException.class)
+  public ResponseEntity<?> catchUserLoginOrPasswordException(UserLoginOrPasswordException ex) {
+    return new ResponseEntity<>(new MarketError(ex.getMessage()), HttpStatus.BAD_REQUEST);
+  }
+
 }
