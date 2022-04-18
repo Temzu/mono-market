@@ -2,8 +2,8 @@ package com.temzu.monomarket.dao.impl;
 
 import com.temzu.monomarket.dao.RoleDao;
 import com.temzu.monomarket.dao.UserDao;
-import com.temzu.monomarket.dao.models.Role;
-import com.temzu.monomarket.dao.models.User;
+import com.temzu.monomarket.models.Role;
+import com.temzu.monomarket.models.User;
 import com.temzu.monomarket.dao.repositories.UserRepository;
 import com.temzu.monomarket.exceptions.ResourceAlreadyExistsException;
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;

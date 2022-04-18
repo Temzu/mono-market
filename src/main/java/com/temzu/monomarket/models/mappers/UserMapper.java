@@ -1,6 +1,6 @@
-package com.temzu.monomarket.dao.models.mappers;
+package com.temzu.monomarket.models.mappers;
 
-import com.temzu.monomarket.dao.models.User;
+import com.temzu.monomarket.models.User;
 import com.temzu.monomarket.dtos.SignUpRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

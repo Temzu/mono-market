@@ -1,6 +1,6 @@
 package com.temzu.monomarket.dao;
 
-import com.temzu.monomarket.dao.models.User;
+import com.temzu.monomarket.models.User;
 
 public interface UserDao {
 

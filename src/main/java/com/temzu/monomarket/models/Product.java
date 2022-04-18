@@ -1,4 +1,4 @@
-package com.temzu.monomarket.dao.models;
+package com.temzu.monomarket.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

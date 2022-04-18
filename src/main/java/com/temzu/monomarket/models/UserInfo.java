@@ -1,4 +1,4 @@
-package com.temzu.monomarket.dao.models;
+package com.temzu.monomarket.models;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
