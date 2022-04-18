@@ -41,7 +41,8 @@ public class AuthServiceImpl implements AuthService {
   private String returnToken(User user) {
     UserInfo userInfo = UserInfo.builder()
         .userId(user.getId())
-        .userEmail(user.getLogin())
+        .userLogin(user.getLogin())
+        .userEmail(user.getEmail())
         .roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
         .build();
     return tokenService.generateToken(userInfo);

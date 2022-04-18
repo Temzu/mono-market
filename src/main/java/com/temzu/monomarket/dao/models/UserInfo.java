@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class UserInfo {
 
   private Long userId;
+  private String userLogin;
   private String userEmail;
   private List<String> roles;
 }

@@ -7,7 +7,6 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.Instant;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
