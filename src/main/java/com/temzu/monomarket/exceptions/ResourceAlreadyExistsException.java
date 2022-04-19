@@ -18,4 +18,8 @@ public class ResourceAlreadyExistsException extends ResourceException {
   public static ResourceAlreadyExistsException byUuid(UUID uuid, Class<?> entityClass) {
     return new ResourceAlreadyExistsException(entityClass, ExceptionTypes.UUID, uuid.toString());
   }
+
+  public static ResourceAlreadyExistsException byEmail(String email, Class<?> entityClass) {
+    return new ResourceAlreadyExistsException(entityClass, ExceptionTypes.EMAIL, email);
+  }
 }

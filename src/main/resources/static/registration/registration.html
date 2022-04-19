@@ -1,0 +1,33 @@
+<form ng-submit="tryToSignUp()">
+  <div class="mb-3">
+    <label for="inputLogin" class="form-label">Login</label>
+    <input type="text" class="form-control" id="inputLogin" ng-model="user.login">
+  </div>
+
+  <div class="mb-3">
+    <label for="inputPassword" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword" ng-model="user.password">
+  </div>
+
+  <div class="mb-3">
+    <label for="inputEmail" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" ng-model="user.email">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<!--<form class="d-flex" ng-submit="tryToAuth()" ng-show="!isUserLoggedIn()">-->
+<!--  <div class="input-group">-->
+<!--    <input id="navLoginField" class="form-control" ng-model="user.login" type="text"-->
+<!--           aria-describedby="inputGroup-sizing-sm" placeholder="login">-->
+
+<!--    <input id="navPasswordField" class="form-control" ng-model="user.password"-->
+<!--           type="password"-->
+<!--           aria-describedby="inputGroup-sizing-sm" placeholder="password">-->
+
+<!--    <button id="navLoginSubmit" class="btn btn-outline-warning btn-sm"-->
+<!--            style="margin-left: 10px;" type="submit">Sign in-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</form>-->

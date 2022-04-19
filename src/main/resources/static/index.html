@@ -51,6 +51,9 @@
           <div class="d-flex" ng-if="isUserLoggedIn()">
             <button class="btn btn-outline-secondary" ng-click="tryToLogout()">Logout</button>
           </div>
+          <div class="d-flex" ng-show="!isUserLoggedIn()">
+            <a class="btn btn-primary" href="#!/registration" role="button">Sign up</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -61,6 +64,7 @@
   <script src="index.js"></script>
   <script src="home/home.js"></script>
   <script src="products/products.js"></script>
+  <script src="registration/registration.js"></script>
 </div>
 </body>
 </html>
