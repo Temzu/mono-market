@@ -11,6 +11,7 @@ import com.temzu.monomarket.dtos.SignUpRequestDto;
 import com.temzu.monomarket.services.AuthService;
 import com.temzu.monomarket.services.TokenService;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class AuthServiceImpl implements AuthService {
   private final UserMapper userMapper;
 
   @Override
+  @Transactional
   public AuthResponseDto signUp(SignUpRequestDto signUpRequestDto) {
     User user = userDao.save(userMapper.toUser(signUpRequestDto));
 

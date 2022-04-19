@@ -4,6 +4,7 @@ import com.temzu.monomarket.dtos.AuthRequestDto;
 import com.temzu.monomarket.dtos.AuthResponseDto;
 import com.temzu.monomarket.dtos.SignUpRequestDto;
 import com.temzu.monomarket.services.AuthService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,12 +19,12 @@ public class AuthController {
   private final AuthService authService;
 
   @PostMapping("/signup")
-  public AuthResponseDto signUp(@RequestBody SignUpRequestDto signUpRequest) {
+  public AuthResponseDto signUp(@Valid @RequestBody SignUpRequestDto signUpRequest) {
     return authService.signUp(signUpRequest);
   }
 
   @PostMapping("/login")
-  public AuthResponseDto login(@RequestBody AuthRequestDto request) {
+  public AuthResponseDto login(@Valid @RequestBody AuthRequestDto request) {
     return authService.login(request);
   }
 }
