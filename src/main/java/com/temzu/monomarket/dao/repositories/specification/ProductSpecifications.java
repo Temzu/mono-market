@@ -1,6 +1,6 @@
 package com.temzu.monomarket.dao.repositories.specification;
 
-import com.temzu.monomarket.dao.models.Product;
+import com.temzu.monomarket.models.Product;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.MultiValueMap;
 

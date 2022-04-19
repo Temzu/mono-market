@@ -1,6 +1,6 @@
 package com.temzu.monomarket.dao;
 
-import com.temzu.monomarket.dao.models.Role;
+import com.temzu.monomarket.models.Role;
 
 public interface RoleDao {
 

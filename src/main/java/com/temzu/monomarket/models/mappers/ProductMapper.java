@@ -1,9 +1,8 @@
-package com.temzu.monomarket.dao.models.mappers;
+package com.temzu.monomarket.models.mappers;
 
-import com.temzu.monomarket.dao.CategoryDao;
 import com.temzu.monomarket.dtos.ProductCreateDto;
 import com.temzu.monomarket.dtos.ProductDto;
-import com.temzu.monomarket.dao.models.Product;
+import com.temzu.monomarket.models.Product;
 import com.temzu.monomarket.dtos.ProductUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

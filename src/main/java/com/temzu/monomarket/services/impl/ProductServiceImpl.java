@@ -2,11 +2,11 @@ package com.temzu.monomarket.services.impl;
 
 import com.temzu.monomarket.dao.CategoryDao;
 import com.temzu.monomarket.dao.ProductDao;
-import com.temzu.monomarket.dao.models.Product;
+import com.temzu.monomarket.models.Product;
 import com.temzu.monomarket.dao.repositories.specification.ProductSpecifications;
 import com.temzu.monomarket.dtos.ProductCreateDto;
 import com.temzu.monomarket.dtos.ProductDto;
-import com.temzu.monomarket.dao.models.mappers.ProductMapper;
+import com.temzu.monomarket.models.mappers.ProductMapper;
 import com.temzu.monomarket.dtos.ProductUpdateDto;
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;
 import com.temzu.monomarket.services.ProductService;

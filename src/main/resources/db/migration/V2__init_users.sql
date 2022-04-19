@@ -1,9 +1,9 @@
 create table users
 (
     id         bigserial primary key,
-    login      varchar(30) not null,
+    login      varchar(30) unique not null,
     password   varchar(80) not null,
-    email      varchar(50) unique,
+    email      varchar(50) unique not null,
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp
 );

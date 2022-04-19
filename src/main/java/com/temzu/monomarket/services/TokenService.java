@@ -1,6 +1,6 @@
 package com.temzu.monomarket.services;
 
-import com.temzu.monomarket.dao.models.UserInfo;
+import com.temzu.monomarket.models.UserInfo;
 
 public interface TokenService {
 

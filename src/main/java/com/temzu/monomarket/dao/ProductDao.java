@@ -1,6 +1,6 @@
 package com.temzu.monomarket.dao;
 
-import com.temzu.monomarket.dao.models.Product;
+import com.temzu.monomarket.models.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 

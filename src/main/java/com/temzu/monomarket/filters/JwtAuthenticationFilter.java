@@ -1,6 +1,6 @@
 package com.temzu.monomarket.filters;
 
-import com.temzu.monomarket.dao.models.UserInfo;
+import com.temzu.monomarket.models.UserInfo;
 import com.temzu.monomarket.services.TokenService;
 import io.jsonwebtoken.ExpiredJwtException;
 import java.util.ArrayList;

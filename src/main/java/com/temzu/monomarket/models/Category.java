@@ -1,5 +1,6 @@
-package com.temzu.monomarket.dao.models;
+package com.temzu.monomarket.models;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +30,12 @@ public class Category {
 
   @OneToMany(mappedBy = "category")
   private List<Product> products;
+
+  @Column(name = "createdAt")
+  @CreationTimestamp
+  private LocalDateTime createdAt;
+
+  @Column(name = "updatedAt")
+  @UpdateTimestamp
+  private LocalDateTime updatedAt;
 }

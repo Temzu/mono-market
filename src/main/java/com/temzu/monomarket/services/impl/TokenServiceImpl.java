@@ -1,13 +1,12 @@
 package com.temzu.monomarket.services.impl;
 
-import com.temzu.monomarket.dao.models.UserInfo;
+import com.temzu.monomarket.models.UserInfo;
 import com.temzu.monomarket.services.TokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.Instant;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +26,7 @@ public class TokenServiceImpl implements TokenService {
   private static final String USERID_CLAIM = "id";
   private static final String LOGIN_CLAIM = "login";
   private static final String ROLE_CLAIM = "role";
+  private static final String EMAIL_CLAIM = "email";
 
   @Override
   public String generateToken(UserInfo user) {
@@ -35,7 +35,8 @@ public class TokenServiceImpl implements TokenService {
 
     return "Bearer " + Jwts.builder()
         .claim(USERID_CLAIM, user.getUserId())
-        .claim(LOGIN_CLAIM, user.getUserEmail())
+        .claim(LOGIN_CLAIM, user.getUserLogin())
+        .claim(EMAIL_CLAIM, user.getUserEmail())
         .claim(ROLE_CLAIM, user.getRoles())
         .setExpiration(expirationDate)
         .signWith(SignatureAlgorithm.HS512, JWT_SECRET)

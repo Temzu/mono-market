@@ -1,4 +1,4 @@
-package com.temzu.monomarket.dao.models;
+package com.temzu.monomarket.models;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class UserInfo {
 
   private Long userId;
+  private String userLogin;
   private String userEmail;
   private List<String> roles;
 }
