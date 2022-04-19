@@ -25,9 +25,14 @@ public class UserDaoImpl implements UserDao {
   @Override
   public User save(User user) {
     String login = user.getLogin();
+    String email = user.getEmail();
 
     if (userRepository.existsByLogin(login)) {
       throw ResourceAlreadyExistsException.byLogin(login, User.class);
+    }
+
+    if (userRepository.existsByEmail(email)) {
+      throw ResourceAlreadyExistsException.byEmail(email, User.class);
     }
 
     Role role = roleDao.findByName("ROLE_USER");
