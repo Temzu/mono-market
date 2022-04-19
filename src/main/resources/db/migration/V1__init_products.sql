@@ -29,4 +29,12 @@ values ('Milk', 95, 1),
        ('Cheese5', 420, 1),
        ('Cheese6', 420, 1),
        ('Cheese7', 420, 1),
-       ('Cheese8', 420, 1);
+       ('Cheese8', 420, 1),
+       ('Cheese8', 328, 1),
+       ('Cheese9', 328, 1),
+       ('Cheese10', 328,1),
+       ('Cheese11', 328,1),
+       ('Cheese12', 328,1),
+       ('Cheese13', 328,1),
+       ('Cheese14', 328,1),
+       ('Cheese15', 328,1);
