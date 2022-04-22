@@ -49,8 +49,11 @@ public class TokenServiceImpl implements TokenService {
         .setSigningKey(JWT_SECRET)
         .parseClaimsJws(token);
 
+    String login = jwsClaims.getBody()
+        .get(LOGIN_CLAIM, String.class);
+
     String email = jwsClaims.getBody()
-        .getSubject();
+        .get(EMAIL_CLAIM, String.class);
 
     Long userId = jwsClaims.getBody()
         .get(USERID_CLAIM, Long.class);
@@ -61,6 +64,7 @@ public class TokenServiceImpl implements TokenService {
     return UserInfo.builder()
         .userId(userId)
         .userEmail(email)
+        .userLogin(login)
         .roles(roles)
         .build();
   }

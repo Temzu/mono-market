@@ -21,3 +21,7 @@ spring:
       enabled: true
       settings:
         web-allow-others: false
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
