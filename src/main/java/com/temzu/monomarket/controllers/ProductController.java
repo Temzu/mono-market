@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/products")
-//@PreAuthorize("isAuthenticated()")
 public class ProductController {
 
   private final ProductService productService;

@@ -20,7 +20,7 @@ public class OrderController {
   private final OrderService orderService;
 
   @GetMapping
-  public Page<OrderDto> findPage(
+  public Page<OrderDto> findPageByCurrentUser(
       Principal principal,
       @RequestParam(name = "page", defaultValue = "1") int page,
       @RequestParam(name = "page_size", defaultValue = "10") int pageSize
@@ -29,7 +29,9 @@ public class OrderController {
       page = 1;
       pageSize = 10;
     }
-    return orderService.findPageByCurrentUser(principal.getName(), page, pageSize);
+    return orderService.findPageByUserLogin(principal.getName(), page, pageSize);
   }
+
+
 
 }

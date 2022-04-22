@@ -6,9 +6,7 @@ import org.springframework.data.domain.Page;
 
 public interface OrderService {
 
-  Page<OrderDto> findPageByCurrentUser(String login, int page, int pageSize);
-
-  OrderDto findById(Long id);
+  Page<OrderDto> findPageByUserLogin(String login, int page, int pageSize);
 
   void createOrder(OrderCreateDto orderCreateDto);
 

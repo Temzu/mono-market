@@ -23,16 +23,13 @@ public class OrderServiceImpl implements OrderService {
   private final OrderMapper orderMapper;
 
   @Override
-  public Page<OrderDto> findPageByCurrentUser(String login, int page, int pageSize) {
+  public Page<OrderDto> findPageByUserLogin(String login, int page, int pageSize) {
     User curUser = userDao.findByLogin(login);
     return orderDao.findPageByUser(curUser, page, pageSize).map(orderMapper::toOrderDto);
   }
 
   @Override
-  public OrderDto findById(Long id) {
-    return null;
-  }
+  public void createOrder(OrderCreateDto orderCreateDto) {
 
-  @Override
-  public void createOrder(OrderCreateDto orderCreateDto) {}
+  }
 }
