@@ -62,6 +62,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
               .collect(Collectors.toList()));
     }
 
-    return new UsernamePasswordAuthenticationToken(userInfo, null, authorities);
+    return new UsernamePasswordAuthenticationToken(userInfo.getUserLogin(), null, authorities);
   }
 }

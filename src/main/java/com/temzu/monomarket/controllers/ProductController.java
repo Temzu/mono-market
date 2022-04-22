@@ -31,7 +31,7 @@ public class ProductController {
   public Page<ProductDto> findPage(
       @RequestParam MultiValueMap<String, String> params,
       @RequestParam(name = "page", defaultValue = "1") Integer page,
-      @RequestParam(name = "size", defaultValue = "10") Integer pageSize) {
+      @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
     if (page < 1 || pageSize < 1) {
       page = 1;
       pageSize = 10;
