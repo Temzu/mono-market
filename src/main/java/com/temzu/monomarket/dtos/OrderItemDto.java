@@ -3,8 +3,10 @@ package com.temzu.monomarket.dtos;
 import com.temzu.monomarket.models.Product;
 import java.math.BigDecimal;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class OrderItemDto {
 
   private Long productId;

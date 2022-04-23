@@ -20,6 +20,10 @@
       templateUrl: 'registration/registration.html',
       controller: 'registrationController'
     })
+    .when('/orders', {
+      templateUrl: 'order/order.html',
+      controller: 'ordersController'
+    })
     .otherwise({
       redirectTo: '/'
     });
