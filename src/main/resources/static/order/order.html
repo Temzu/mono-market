@@ -1,0 +1,27 @@
+<h3>My orders</h3>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <td>ID</td>
+    <td>Details</td>
+    <td>Delivery address</td>
+    <td>Phone number</td>
+    <td>Price</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="o in orderPage.content">
+    <td>#{{o.id}}</td>
+    <td>
+      <div ng-repeat="oi in o.items">
+        <span>{{oi.productTitle + ' x' + oi.quantity}}</span>
+        <p></p>
+      </div>
+    </td>
+    <td>{{o.address}}</td>
+    <td>{{o.phone}}</td>
+    <td>{{o.price}}</td>
+  </tr>
+  </tbody>
+</table>

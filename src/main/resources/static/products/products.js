@@ -7,7 +7,7 @@ angular.module('market-front').controller("productsController",
           url: contextPath + '/api/v1/products',
           method: 'GET',
           params: {
-            p: pageIndex,
+            page: pageIndex,
             title: $scope.filter ? $scope.filter.title : null,
             min_price: $scope.filter ? $scope.filter.min_price : null,
             max_price: $scope.filter ? $scope.filter.max_price : null
@@ -15,7 +15,6 @@ angular.module('market-front').controller("productsController",
         }).then(function (response) {
           $scope.productsPage = response.data;
           $scope.navList = $scope.generatePagesIndexes(1, $scope.productsPage.totalPages);
-          console.log(response.data);
         });
       };
 
