@@ -54,11 +54,14 @@ angular.module('market-front').controller("productsController",
         return arr;
       }
 
-      // $scope.addToCart = function (productId) {
-      //     $http.get(contextPath + '/api/v1/cart/add/' + productId)
-      //         .then(function (response) {
-      //         });
-      // }
+      $scope.addToCart = function (productId) {
+        $http({
+          url: contextPath + '/api/v1/cart/add/' + productId,
+          method: 'GET'
+        }).then(function (response) {
+          $scope.loadCart();
+        });
+      }
 
       // $scope.addToCart = function (productId) {
       //   $http({

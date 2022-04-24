@@ -27,6 +27,9 @@
   <tr ng-repeat="p in productsPage.content">
     <td>{{p.title}}</td>
     <td>{{p.price}}</td>
+    <td>
+      <button class="btn btn-primary" ng-click="addToCart(p.id)">Add to Cart</button>
+    </td>
   </tr>
   </tbody>
 </table>

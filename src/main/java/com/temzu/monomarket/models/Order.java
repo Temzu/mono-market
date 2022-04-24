@@ -1,5 +1,7 @@
 package com.temzu.monomarket.models;
 
+import com.temzu.monomarket.dtos.OrderCreateDto;
+import com.temzu.monomarket.util.Cart;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -52,4 +54,8 @@ public class Order {
   @UpdateTimestamp
   @Column(name = "updated_at")
   private LocalDateTime updatedAt;
+
+  public Order(Cart cart, User curUser, OrderCreateDto orderCreateDto) {
+
+  }
 }

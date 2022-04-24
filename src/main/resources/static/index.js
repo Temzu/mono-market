@@ -6,7 +6,7 @@
   .config(config)
   .run(run);
 
-  function config($routeProvider, $httpProvider) {
+  function config($routeProvider) {
     $routeProvider
     .when('/', {
       templateUrl: 'home/home.html',
@@ -24,12 +24,14 @@
       templateUrl: 'order/order.html',
       controller: 'ordersController'
     })
+    .when('/cart', {
+      templateUrl: 'cart/cart.html',
+      controller: 'cartController'
+    })
     .otherwise({
       redirectTo: '/'
     });
   }
-
-  const contextPath = "http://localhost:8189/market";
 
   function run($rootScope, $http, $localStorage) {
     if ($localStorage.currentUser) {
@@ -37,15 +39,15 @@
           + $localStorage.currentUser.token;
     }
 
-    $http.post(contextPath + '/api/v1/cart')
-    .then(function successCallback(response) {
-      $localStorage.happyCartUuid = response.data;
-    });
+    // $http.post(contextPath + '/api/v1/cart')
+    // .then(function successCallback(response) {
+    //   $localStorage.happyCartUuid = response.data;
+    // });
   }
 })();
 
 angular.module('market-front').controller('indexController',
-    function ($scope, $http, $localStorage, $location) {
+    function ($rootScope, $scope, $http, $localStorage, $location) {
 
       const contextPath = "http://localhost:8189/market";
 
@@ -98,7 +100,7 @@ angular.module('market-front').controller('indexController',
         $http.defaults.headers.common.Authorization = '';
       };
 
-      $scope.isUserLoggedIn = function () {
+      $rootScope.isUserLoggedIn = function () {
         if ($localStorage.currentUser) {
           return true;
         } else {
