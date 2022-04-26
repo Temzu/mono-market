@@ -27,8 +27,8 @@ public class ResourceNotFoundException extends ResourceException {
     return new ResourceNotFoundException(entityClass, ExceptionTypes.LOGIN, login);
   }
 
-  public static ResourceNotFoundException byUuid(UUID uuid, Class<?> entityClass) {
-    return new ResourceNotFoundException(entityClass, ExceptionTypes.UUID, uuid.toString());
+  public static ResourceNotFoundException byUuid(String uuid, Class<?> entityClass) {
+    return new ResourceNotFoundException(entityClass, ExceptionTypes.UUID, uuid);
   }
 
 }

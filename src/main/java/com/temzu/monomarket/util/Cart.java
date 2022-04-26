@@ -4,22 +4,15 @@ import com.temzu.monomarket.dtos.OrderItemDto;
 import com.temzu.monomarket.models.Product;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-@Component
-@NoArgsConstructor
 @Data
 public class Cart {
   private List<OrderItemDto> items;
   private BigDecimal price;
 
-  @PostConstruct
-  public void init() {
+  public Cart() {
     this.items = new ArrayList<>();
     this.price = BigDecimal.ZERO;
   }
@@ -30,14 +23,16 @@ public class Cart {
   }
 
   public boolean add(Long productId) {
-    for (OrderItemDto o : items) {
-      if (o.getProductId().equals(productId)) {
-        o.changeQuantity(1);
-        recalculate();
-        return true;
-      }
-    }
-    return false;
+    BigDecimal tmp = BigDecimal.valueOf(price.doubleValue());
+    items.stream()
+        .filter(oid -> oid.getProductId().equals(productId))
+        .findFirst()
+        .ifPresent(
+            oid -> {
+              oid.changeQuantity(1);
+              recalculate();
+            });
+    return price.compareTo(tmp) != 0;
   }
 
   public void add(Product product) {
@@ -47,29 +42,42 @@ public class Cart {
 
   private void recalculate() {
     price = BigDecimal.ZERO;
-    for (OrderItemDto oid : items) {
-      price = price.add(oid.getPrice());
-    }
+    items.forEach(oid -> price = price.add(oid.getPrice()));
   }
 
-  public void remove(Long productId) {
-    items.removeIf(oi -> oi.getProductId().equals(productId));
-    recalculate();
-  }
-
-  public boolean changeQuantity(Long productId, int amount) {
-    Iterator<OrderItemDto> iter = items.iterator();
-    while (iter.hasNext()) {
-      OrderItemDto o = iter.next();
-      if (o.getProductId().equals(productId)) {
-        o.changeQuantity(amount);
-        if (o.getQuantity() <= 0) {
-          iter.remove();
-        }
-        recalculate();
-        return true;
-      }
+    public void remove(Long productId) {
+      items.removeIf(oi -> oi.getProductId().equals(productId));
+      recalculate();
     }
-    return false;
+
+  public void changeQuantity(Long productId, int amount) {
+    items.stream()
+        .filter(oid -> oid.getProductId().equals(productId))
+        .findFirst()
+        .ifPresent(oid -> {
+          oid.changeQuantity(amount);
+          if (oid.getQuantity() <= 0) {
+            items.remove(oid);
+          }
+          recalculate();
+        });
   }
+  //
+  //  public void merge(Cart another) {
+  //    for (OrderItemDto anotherItem : another.items) {
+  //      boolean merged = false;
+  //      for (OrderItemDto myItem : items) {
+  //        if (myItem.getProductId().equals(anotherItem.getProductId())) {
+  //          myItem.changeQuantity(anotherItem.getQuantity());
+  //          merged = true;
+  //          break;
+  //        }
+  //      }
+  //      if (!merged) {
+  //        items.add(anotherItem);
+  //      }
+  //    }
+  //    recalculate();
+  //    another.clear();
+  //  }
 }
