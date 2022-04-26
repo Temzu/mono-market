@@ -22,6 +22,6 @@ public class OrderDaoImpl implements OrderDao {
 
   @Override
   public Order saveOrUpdate(Order order) {
-    return null;
+    return orderRepository.save(order);
   }
 }

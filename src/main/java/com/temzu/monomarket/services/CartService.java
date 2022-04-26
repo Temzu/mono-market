@@ -5,15 +5,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface CartService {
-  Cart save(Cart cart);
+  String generateCartUuid();
 
-  Cart findById(UUID id);
+  Cart getCurrentCart(String cartKey);
 
-  Optional<Cart> findByUserId(Long userId);
+  void addToCart(String cartKey, Long productId);
 
-  void addToCart(UUID cartId, Long productId);
+  void clearCart(String cartKey);
 
-  void clearCart(UUID cartId);
+  void decrementQuantity(String cartKey, Long productId);
 
-  UUID findCartForUser(Long userId, UUID cartUuid);
+
 }

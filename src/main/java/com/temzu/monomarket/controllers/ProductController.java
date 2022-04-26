@@ -38,7 +38,6 @@ public class ProductController {
     return productService.findPage(params, page, pageSize);
   }
 
-
   @GetMapping("/{id}")
   public ProductDto findById(@PathVariable Long id) {
     return productService.findById(id);
