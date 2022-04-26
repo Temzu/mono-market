@@ -32,6 +32,7 @@
       redirectTo: '/'
     });
   }
+  const contextPath = "http://localhost:8189/market";
 
   function run($rootScope, $http, $localStorage) {
     if ($localStorage.currentUser) {
@@ -39,10 +40,13 @@
           + $localStorage.currentUser.token;
     }
 
-    // $http.post(contextPath + '/api/v1/cart')
-    // .then(function successCallback(response) {
-    //   $localStorage.happyCartUuid = response.data;
-    // });
+    if (!$localStorage.guestCartUuid) {
+      $http.get(contextPath + '/api/v1/cart/generate')
+      .then(function successCallback(response) {
+        $localStorage.guestCartUuid = response.data.value;
+        console.log($localStorage.guestCartUuid);
+      });
+    }
   }
 })();
 
