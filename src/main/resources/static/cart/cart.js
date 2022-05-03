@@ -72,7 +72,7 @@ angular.module('market-front').controller('cartController',
             phone: $scope.order_info.phone
           }
         }).then(function (response) {
-          alert('Заказ создан');
+          alert('Order created');
           $scope.loadCart();
         });
       }

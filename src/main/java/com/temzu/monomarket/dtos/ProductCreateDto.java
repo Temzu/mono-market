@@ -15,7 +15,7 @@ public class ProductCreateDto {
 
   @NotBlank(message = "Title must not be blank and not be null")
   @Size(min = 3, max = 255, message = "Title length must be between 3-255")
-  @Pattern(regexp="^[A-Za-z0-9]*$", message = "Title contains invalid characters")
+  @Pattern(regexp="^[A-Za-z\\d]*$", message = "Title contains invalid characters")
   private String title;
 
   @NotNull(message = "Price must be not null")
