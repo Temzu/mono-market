@@ -2,6 +2,7 @@ package com.temzu.monomarket.services.impl;
 
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;
 import com.temzu.monomarket.services.RedisService;
+import java.time.Duration;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.cache.CacheProperties.Redis;
@@ -32,5 +33,10 @@ public class RedisServiceImpl<T> implements RedisService<T> {
   @Override
   public void set(String key, T o) {
     redisTemplate.opsForValue().set(key, o);
+  }
+
+  @Override
+  public void setWithExpirationTime(String key, T o, Duration duration) {
+    redisTemplate.opsForValue().set(key, o, duration);
   }
 }
