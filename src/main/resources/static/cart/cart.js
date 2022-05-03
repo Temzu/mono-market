@@ -77,13 +77,5 @@ angular.module('market-front').controller('cartController',
         });
       }
 
-      // $scope.createOrder = function () {
-      //   $http.post(contextPath + '/api/v1/orders/' + $localStorage.guestCartUuid, $scope.order_info)
-      //   .then(function (response) {
-      //     alert('Заказ создан');
-      //     $scope.loadCart();
-      //   });
-      // }
-
       $scope.loadCart();
     });

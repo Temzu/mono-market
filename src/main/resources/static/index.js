@@ -36,8 +36,7 @@
 
   function run($rootScope, $http, $localStorage) {
     if ($localStorage.currentUser) {
-      $http.defaults.headers.common.Authorization = 'Bearer '
-          + $localStorage.currentUser.token;
+      $http.defaults.headers.common.Authorization = $localStorage.currentUser.token;
     }
 
     if (!$localStorage.guestCartUuid) {
@@ -60,8 +59,7 @@ angular.module('market-front').controller('indexController',
         $http.post(contextPath + '/api/v1/auth/login', $scope.user)
         .then(function successCallback(response) {
           if (response.data.token) {
-            $http.defaults.headers.common.Authorization = 'Bearer '
-                + response.data.token;
+            $http.defaults.headers.common.Authorization = response.data.token;
             $localStorage.currentUser = {
               login: $scope.user.login,
               token: response.data.token

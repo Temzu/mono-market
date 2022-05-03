@@ -45,7 +45,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     token = token.substring(7);
-
     if (!redisService.exists(token)) {
       httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
       ObjectMapper mapper = new ObjectMapper();
