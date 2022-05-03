@@ -1,5 +1,9 @@
 package com.temzu.monomarket.exceptions;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,5 +28,12 @@ public class MarketError {
   public MarketError(List<String> messages) {
     this.messages = new ArrayList<>(messages);
     this.timestamp = LocalDateTime.now();
+  }
+
+  @JsonSerialize(using = LocalDateTimeSerializer.class)
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+  @JsonProperty("date")
+  public LocalDateTime getTimestamp() {
+    return timestamp;
   }
 }
