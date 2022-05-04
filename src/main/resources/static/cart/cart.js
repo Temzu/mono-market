@@ -64,18 +64,16 @@ angular.module('market-front').controller('cartController',
       }
 
       $scope.createOrder = function () {
-        $http({
-          url: contextPath + '/api/v1/orders/' + $localStorage.guestCartUuid,
-          method: 'POST',
-          params: {
-            address: $scope.order_info.address,
-            phone: $scope.order_info.phone
-          }
-        }).then(function (response) {
+        $http.post(contextPath + '/api/v1/orders/' + $localStorage.guestCartUuid, $scope.order_info)
+        .then(function (response) {
           alert('Order created');
           $scope.loadCart();
+        }, function errorCallback(response) {
+          alert(response.data.messages);
         });
       }
+
+
 
       $scope.loadCart();
     });

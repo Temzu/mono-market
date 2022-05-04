@@ -2,6 +2,7 @@ package com.temzu.monomarket.services.impl;
 
 import com.temzu.monomarket.dao.OrderDao;
 import com.temzu.monomarket.dao.UserDao;
+import com.temzu.monomarket.dtos.OrderCreateDto;
 import com.temzu.monomarket.dtos.OrderDto;
 import com.temzu.monomarket.models.Order;
 import com.temzu.monomarket.models.OrderItem;
@@ -43,12 +44,12 @@ public class OrderServiceImpl implements OrderService {
 
   @Transactional
   @Override
-  public void createOrder(String login, String address, String phone, String uuid) {
+  public void createOrder(String login, OrderCreateDto orderCreateDto, String uuid) {
     Cart cart = cartService.getCurrentCart(uuid);
     Order order =
         Order.builder()
-            .phone(phone)
-            .address(address)
+            .phone(orderCreateDto.getPhone())
+            .address(orderCreateDto.getAddress())
             .user(userDao.findByLogin(login))
             .price(cart.getPrice())
             .build();
