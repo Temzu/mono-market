@@ -36,6 +36,7 @@ public class OrderServiceImpl implements OrderService {
 
   private final OrderMapper orderMapper;
 
+  @Transactional
   @Override
   public Page<OrderDto> findPageByUserLogin(String login, int page, int pageSize) {
     User curUser = userDao.findByLogin(login);

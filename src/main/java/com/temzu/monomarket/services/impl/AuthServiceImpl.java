@@ -23,8 +23,8 @@ public class AuthServiceImpl implements AuthService {
   private final TokenService tokenService;
   private final UserMapper userMapper;
 
-  @Override
   @Transactional
+  @Override
   public AuthResponseDto signUp(SignUpRequestDto signUpRequestDto) {
     User user = userDao.save(userMapper.toUser(signUpRequestDto));
 
@@ -32,6 +32,7 @@ public class AuthServiceImpl implements AuthService {
     return new AuthResponseDto(token);
   }
 
+  @Transactional
   @Override
   public AuthResponseDto login(AuthRequestDto request) {
     User user = userDao.findByLoginAndPassword(request.getLogin(), request.getPassword());

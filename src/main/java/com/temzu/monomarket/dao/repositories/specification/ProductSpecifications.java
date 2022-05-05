@@ -28,16 +28,16 @@ public class ProductSpecifications {
   public static Specification<Product> build(MultiValueMap<String, String> params) {
     Specification<Product> spec = Specification.where(null);
 
-    if (params.containsKey(FILTER_MIN_PRICE) && !params.getFirst(FILTER_MIN_PRICE).isBlank()) {
+    if (params.containsKey(FILTER_MIN_PRICE) && !params.get(FILTER_MIN_PRICE).get(0).isEmpty()) {
       spec = spec.and(ProductSpecifications.priceGreaterOrEqualsThan(
-          Integer.parseInt(params.getFirst(FILTER_MIN_PRICE))));
+          Integer.parseInt(params.get(FILTER_MIN_PRICE).get(0))));
     }
-    if (params.containsKey(FILTER_MAX_PRICE) && !params.getFirst(FILTER_MAX_PRICE).isBlank()) {
+    if (params.containsKey(FILTER_MAX_PRICE) && !params.get(FILTER_MAX_PRICE).get(0).isEmpty()) {
       spec = spec.and(ProductSpecifications.priceLesserOrEqualsThan(
-          Integer.parseInt(params.getFirst(FILTER_MAX_PRICE))));
+          Integer.parseInt(params.get(FILTER_MAX_PRICE).get(0))));
     }
-    if (params.containsKey(FILTER_TITLE) && !params.getFirst(FILTER_TITLE).isBlank()) {
-      spec = spec.and(ProductSpecifications.titleContaining(params.getFirst(FILTER_TITLE)));
+    if (params.containsKey(FILTER_TITLE) && !params.get(FILTER_TITLE).get(0).isEmpty()) {
+      spec = spec.and(ProductSpecifications.titleContaining(params.get(FILTER_TITLE).get(0)));
     }
     return spec;
   }
