@@ -28,7 +28,7 @@ public class ProductController {
 
   @GetMapping
   public Page<ProductDto> findPage(
-      @RequestParam MultiValueMap<String, String> params,
+      @RequestParam(required = false) MultiValueMap<String, String> params,
       @RequestParam(name = "page", defaultValue = "1") Integer page,
       @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
     if (page < 1 || pageSize < 1) {
