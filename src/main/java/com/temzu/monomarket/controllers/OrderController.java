@@ -5,9 +5,6 @@ import com.temzu.monomarket.dtos.OrderDto;
 import com.temzu.monomarket.services.OrderService;
 import java.security.Principal;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -45,8 +42,7 @@ public class OrderController {
   public void createOrder(
       Principal principal,
       @Valid @RequestBody OrderCreateDto orderCreateDto,
-      @PathVariable String uuid
-  ) {
+      @PathVariable String uuid) {
     orderService.createOrder(principal.getName(), orderCreateDto, uuid);
   }
 }
