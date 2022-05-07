@@ -46,8 +46,8 @@ public class CartController {
   }
 
   @GetMapping("/{uuid}/clear")
-  public void clear(@PathVariable String uuid) {
-    cartService.clearCart(uuid);
+  public void clear(Principal principal, @PathVariable String uuid) {
+    cartService.clearCart(getCurrentCartUuid(principal, uuid));
   }
 
   @GetMapping("/{uuid}/merge")
