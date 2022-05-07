@@ -45,8 +45,8 @@ public class OrderServiceImpl implements OrderService {
 
   @Transactional
   @Override
-  public void createOrder(String login, OrderCreateDto orderCreateDto, String uuid) {
-    Cart cart = cartService.getCurrentCart(uuid);
+  public void createOrder(String login, OrderCreateDto orderCreateDto) {
+    Cart cart = cartService.getCurrentCart(cartService.getCartUuidFromSuffix(login));
     Order order =
         Order.builder()
             .phone(orderCreateDto.getPhone())
@@ -66,6 +66,6 @@ public class OrderServiceImpl implements OrderService {
             .collect(Collectors.toList()));
     cart.clear();
     orderDao.saveOrUpdate(order);
-    redisService.set(uuid, cart);
+    redisService.set(cartService.getCartUuidFromSuffix(login), cart);
   }
 }

@@ -4,6 +4,7 @@ import com.temzu.monomarket.dtos.OrderItemDto;
 import com.temzu.monomarket.models.Product;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import lombok.Data;
 
@@ -45,39 +46,40 @@ public class Cart {
     items.forEach(oid -> price = price.add(oid.getPrice()));
   }
 
-    public void remove(Long productId) {
-      items.removeIf(oi -> oi.getProductId().equals(productId));
-      recalculate();
-    }
+  public void remove(Long productId) {
+    items.removeIf(oi -> oi.getProductId().equals(productId));
+    recalculate();
+  }
 
   public void changeQuantity(Long productId, int amount) {
     items.stream()
         .filter(oid -> oid.getProductId().equals(productId))
         .findFirst()
-        .ifPresent(oid -> {
-          oid.changeQuantity(amount);
-          if (oid.getQuantity() <= 0) {
-            items.remove(oid);
-          }
-          recalculate();
-        });
+        .ifPresent(
+            oid -> {
+              oid.changeQuantity(amount);
+              if (oid.getQuantity() <= 0) {
+                items.remove(oid);
+              }
+              recalculate();
+            });
   }
-  //
-  //  public void merge(Cart another) {
-  //    for (OrderItemDto anotherItem : another.items) {
-  //      boolean merged = false;
-  //      for (OrderItemDto myItem : items) {
-  //        if (myItem.getProductId().equals(anotherItem.getProductId())) {
-  //          myItem.changeQuantity(anotherItem.getQuantity());
-  //          merged = true;
-  //          break;
-  //        }
-  //      }
-  //      if (!merged) {
-  //        items.add(anotherItem);
-  //      }
-  //    }
-  //    recalculate();
-  //    another.clear();
-  //  }
+
+  public void merge(Cart another) {
+    for (OrderItemDto anotherItem : another.items) {
+      boolean merged = false;
+      for (OrderItemDto myItem : items) {
+        if (myItem.getProductId().equals(anotherItem.getProductId())) {
+          myItem.changeQuantity(anotherItem.getQuantity());
+          merged = true;
+          break;
+        }
+      }
+      if (!merged) {
+        items.add(anotherItem);
+      }
+    }
+    recalculate();
+    another.clear();
+  }
 }

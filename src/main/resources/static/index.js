@@ -69,6 +69,11 @@ angular.module('market-front').controller('indexController',
 
             $scope.user.login = null;
             $scope.user.password = null;
+
+            $http.get(
+                contextPath + '/api/v1/cart/' + $localStorage.guestCartUuid + '/merge')
+            .then(function successCallback(response) {
+            });
           }
         }, function errorCallback(response) {
           alert(response.data.messages);

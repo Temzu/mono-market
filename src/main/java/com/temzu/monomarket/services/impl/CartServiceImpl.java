@@ -7,6 +7,7 @@ import com.temzu.monomarket.util.Cart;
 import java.util.UUID;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,9 +18,17 @@ public class CartServiceImpl implements CartService {
 
   private final RedisService<Cart> redisService;
 
+  @Value("${utils.cart.prefix}")
+  private String cartPrefix;
+
   @Override
   public String generateCartUuid() {
     return UUID.randomUUID().toString();
+  }
+
+  @Override
+  public String getCartUuidFromSuffix(String suffix) {
+    return cartPrefix + suffix;
   }
 
   @Override
@@ -52,6 +61,20 @@ public class CartServiceImpl implements CartService {
   @Override
   public void decrementQuantity(String cartKey, Long productId) {
     execute(cartKey, cart -> cart.changeQuantity(productId, -1));
+  }
+
+  @Override
+  public void removeItemFromCart(String cartKey, Long productId) {
+    execute(cartKey, cart -> cart.remove(productId));
+  }
+
+  @Override
+  public void merge(String userCartKey, String guestCartKey) {
+    Cart guestCart = getCurrentCart(guestCartKey);
+    Cart userCart = getCurrentCart(userCartKey);
+    userCart.merge(guestCart);
+    redisService.set(userCartKey, userCart);
+    redisService.set(guestCartKey, guestCart);
   }
 
   private void execute(String cartKey, Consumer<Cart> action) {

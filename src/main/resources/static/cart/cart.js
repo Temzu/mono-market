@@ -64,7 +64,7 @@ angular.module('market-front').controller('cartController',
       }
 
       $scope.createOrder = function () {
-        $http.post(contextPath + '/api/v1/orders/' + $localStorage.guestCartUuid, $scope.order_info)
+        $http.post(contextPath + '/api/v1/orders', $scope.order_info)
         .then(function (response) {
           alert('Order created');
           $scope.loadCart();
@@ -72,8 +72,6 @@ angular.module('market-front').controller('cartController',
           alert(response.data.messages);
         });
       }
-
-
 
       $scope.loadCart();
     });

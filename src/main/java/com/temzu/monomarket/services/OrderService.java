@@ -8,6 +8,6 @@ public interface OrderService {
 
   Page<OrderDto> findPageByUserLogin(String login, int page, int pageSize);
 
-  void createOrder(String login, OrderCreateDto orderCreateDto, String uuid);
+  void createOrder(String login, OrderCreateDto orderCreateDto);
 
 }

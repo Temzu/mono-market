@@ -30,7 +30,8 @@ public class OrderController {
   public Page<OrderDto> findPageByCurrentUser(
       Principal principal,
       @RequestParam(name = "page", defaultValue = "1") int page,
-      @RequestParam(name = "page_size", defaultValue = "10") int pageSize) {
+      @RequestParam(name = "page_size", defaultValue = "10") int pageSize
+  ) {
     if (page < 1 || pageSize < 1) {
       page = 1;
       pageSize = 10;
@@ -38,11 +39,8 @@ public class OrderController {
     return orderService.findPageByUserLogin(principal.getName(), page, pageSize);
   }
 
-  @PostMapping("/{uuid}")
-  public void createOrder(
-      Principal principal,
-      @Valid @RequestBody OrderCreateDto orderCreateDto,
-      @PathVariable String uuid) {
-    orderService.createOrder(principal.getName(), orderCreateDto, uuid);
+  @PostMapping
+  public void createOrder(Principal principal, @Valid @RequestBody OrderCreateDto orderCreateDto) {
+    orderService.createOrder(principal.getName(), orderCreateDto);
   }
 }
