@@ -7,6 +7,8 @@ import com.temzu.monomarket.services.ProductService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,16 +44,19 @@ public class ProductController {
     return productService.findById(id);
   }
 
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @PostMapping
   public ProductDto save(@Valid @RequestBody ProductCreateDto productCreateDto) {
     return productService.save(productCreateDto);
   }
 
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @PutMapping
   public ProductDto update(@Valid @RequestBody ProductUpdateDto productUpdateDto) {
     return productService.update(productUpdateDto);
   }
 
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @DeleteMapping("/{id}")
   public void deleteById(@PathVariable Long id) {
     productService.deleteById(id);

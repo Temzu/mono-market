@@ -18,6 +18,4 @@ public interface CartService {
   void removeItemFromCart(String cartKey, Long productId);
 
   void merge(String userCartKey, String guestCartKey);
-
-
 }

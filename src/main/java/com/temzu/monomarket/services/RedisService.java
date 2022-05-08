@@ -15,4 +15,6 @@ public interface RedisService<T> {
 
   void setWithExpirationTime(String key, T o, Duration duration);
 
+  void expire(String key);
+
 }

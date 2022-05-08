@@ -39,4 +39,9 @@ public class RedisServiceImpl<T> implements RedisService<T> {
   public void setWithExpirationTime(String key, T o, Duration duration) {
     redisTemplate.opsForValue().set(key, o, duration);
   }
+
+  @Override
+  public void expire(String key) {
+    redisTemplate.expire(key, Duration.ZERO);
+  }
 }

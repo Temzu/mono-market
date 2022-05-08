@@ -13,12 +13,11 @@ import com.temzu.monomarket.services.CartService;
 import com.temzu.monomarket.services.OrderService;
 import com.temzu.monomarket.services.RedisService;
 import com.temzu.monomarket.util.Cart;
-import java.util.List;
 import java.util.stream.Collectors;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,11 +35,13 @@ public class OrderServiceImpl implements OrderService {
 
   private final OrderMapper orderMapper;
 
-  @Transactional
+  @Transactional(readOnly = true)
   @Override
   public Page<OrderDto> findPageByUserLogin(String login, int page, int pageSize) {
     User curUser = userDao.findByLogin(login);
-    return orderDao.findPageByUser(curUser, page, pageSize).map(orderMapper::toOrderDto);
+    return orderDao
+        .findPageByUser(curUser, page, pageSize)
+        .map(orderMapper::toOrderDto);
   }
 
   @Transactional

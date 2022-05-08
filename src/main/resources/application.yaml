@@ -30,4 +30,4 @@ springdoc:
 
 utils:
   cart:
-    prefix: SUMMER_CART_
+    prefix: MONO_MARKET_CART_

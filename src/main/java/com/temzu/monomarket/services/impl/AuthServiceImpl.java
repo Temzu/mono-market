@@ -41,13 +41,19 @@ public class AuthServiceImpl implements AuthService {
     return new AuthResponseDto(token);
   }
 
+  @Override
+  public void logout(String token) {
+    tokenService.expireToken(token);
+  }
+
   private String returnToken(User user) {
-    UserInfo userInfo = UserInfo.builder()
-        .userId(user.getId())
-        .userLogin(user.getLogin())
-        .userEmail(user.getEmail())
-        .roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
-        .build();
-    return tokenService.generateToken(userInfo);
+    UserInfo userInfo =
+        UserInfo.builder()
+            .userId(user.getId())
+            .userLogin(user.getLogin())
+            .userEmail(user.getEmail())
+            .roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
+            .build();
+    return "Bearer " + tokenService.generateTokenWithExpirationTime(userInfo);
   }
 }

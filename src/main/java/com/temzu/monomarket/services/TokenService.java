@@ -4,7 +4,9 @@ import com.temzu.monomarket.models.UserInfo;
 
 public interface TokenService {
 
-  String generateToken(UserInfo user);
+  String generateTokenWithExpirationTime(UserInfo user);
+
+  void expireToken(String token);
 
   UserInfo parseToken(String token);
 

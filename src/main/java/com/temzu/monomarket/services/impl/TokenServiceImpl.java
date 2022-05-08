@@ -1,12 +1,10 @@
 package com.temzu.monomarket.services.impl;
 
-import com.temzu.monomarket.exceptions.TokenExpiredException;
 import com.temzu.monomarket.models.UserInfo;
 import com.temzu.monomarket.services.RedisService;
 import com.temzu.monomarket.services.TokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.Duration;
@@ -37,41 +35,52 @@ public class TokenServiceImpl implements TokenService {
   private static final String EMAIL_CLAIM = "email";
 
   @Override
-  public String generateToken(UserInfo user) {
+  public String generateTokenWithExpirationTime(UserInfo user) {
     Instant start = Instant.now();
     Instant expirationTime = start.plusSeconds(JWT_TTL);
     Date expirationDate = Date.from(expirationTime);
 
     String token =
         Jwts.builder()
-                .claim(USERID_CLAIM, user.getUserId())
-                .claim(LOGIN_CLAIM, user.getUserLogin())
-                .claim(EMAIL_CLAIM, user.getUserEmail())
-                .claim(ROLE_CLAIM, user.getRoles())
-                .setExpiration(expirationDate)
-                .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
-                .compact();
+            .claim(USERID_CLAIM, user.getUserId())
+            .claim(LOGIN_CLAIM, user.getUserLogin())
+            .claim(EMAIL_CLAIM, user.getUserEmail())
+            .claim(ROLE_CLAIM, user.getRoles())
+            .setExpiration(expirationDate)
+            .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
+            .compact();
 
     redisService.setWithExpirationTime(
         token,
         user.getUserLogin().concat("_token"),
         Duration.between(start, expirationTime)
     );
-    return "Bearer " + token;
+    return token;
+  }
+
+  @Override
+  public void expireToken(String token) {
+    redisService.expire(token.substring(7));
   }
 
   @Override
   public UserInfo parseToken(String token) {
 
-    Jws<Claims> jwsClaims = Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(token);
+    Jws<Claims> jwsClaims = Jwts.parser()
+        .setSigningKey(JWT_SECRET)
+        .parseClaimsJws(token);
 
-    String login = jwsClaims.getBody().get(LOGIN_CLAIM, String.class);
+    String login = jwsClaims.getBody()
+        .get(LOGIN_CLAIM, String.class);
 
-    String email = jwsClaims.getBody().get(EMAIL_CLAIM, String.class);
+    String email = jwsClaims.getBody()
+        .get(EMAIL_CLAIM, String.class);
 
-    Long userId = jwsClaims.getBody().get(USERID_CLAIM, Long.class);
+    Long userId = jwsClaims.getBody()
+        .get(USERID_CLAIM, Long.class);
 
-    List roles = jwsClaims.getBody().get(ROLE_CLAIM, List.class);
+    List roles = jwsClaims.getBody()
+        .get(ROLE_CLAIM, List.class);
 
     return UserInfo.builder()
         .userId(userId)
@@ -85,7 +94,7 @@ public class TokenServiceImpl implements TokenService {
   public Long getUserId(String token) {
     return Jwts.parser()
         .setSigningKey(JWT_SECRET)
-        .parseClaimsJws(token.replace("Bearer ", ""))
+        .parseClaimsJws(token.substring(7))
         .getBody()
         .get(USERID_CLAIM, Long.class);
   }
