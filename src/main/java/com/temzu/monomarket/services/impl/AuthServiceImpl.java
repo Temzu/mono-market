@@ -27,7 +27,6 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public AuthResponseDto signUp(SignUpRequestDto signUpRequestDto) {
     User user = userDao.save(userMapper.toUser(signUpRequestDto));
-
     String token = returnToken(user);
     return new AuthResponseDto(token);
   }
@@ -36,7 +35,6 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public AuthResponseDto login(AuthRequestDto request) {
     User user = userDao.findByLoginAndPassword(request.getLogin(), request.getPassword());
-
     String token = returnToken(user);
     return new AuthResponseDto(token);
   }
