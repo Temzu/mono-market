@@ -1,7 +1,7 @@
 package com.temzu.monomarket.models.mappers;
 
-import com.temzu.monomarket.models.User;
 import com.temzu.monomarket.dtos.SignUpRequestDto;
+import com.temzu.monomarket.models.User;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

@@ -2,12 +2,12 @@ package com.temzu.monomarket.dao.impl;
 
 import com.temzu.monomarket.dao.RoleDao;
 import com.temzu.monomarket.dao.UserDao;
-import com.temzu.monomarket.models.Role;
-import com.temzu.monomarket.models.User;
 import com.temzu.monomarket.dao.repositories.UserRepository;
 import com.temzu.monomarket.exceptions.ResourceAlreadyExistsException;
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;
 import com.temzu.monomarket.exceptions.UserLoginOrPasswordException;
+import com.temzu.monomarket.models.Role;
+import com.temzu.monomarket.models.User;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

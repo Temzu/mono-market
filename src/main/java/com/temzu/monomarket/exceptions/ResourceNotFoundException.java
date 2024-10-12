@@ -1,7 +1,6 @@
 package com.temzu.monomarket.exceptions;
 
 import com.temzu.monomarket.enums.ExceptionTypes;
-import java.util.UUID;
 
 public class ResourceNotFoundException extends ResourceException {
 

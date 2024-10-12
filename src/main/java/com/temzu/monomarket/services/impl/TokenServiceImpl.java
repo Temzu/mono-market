@@ -79,7 +79,8 @@ public class TokenServiceImpl implements TokenService {
     Long userId = jwsClaims.getBody()
         .get(USERID_CLAIM, Long.class);
 
-    List roles = jwsClaims.getBody()
+    @SuppressWarnings({"unchecked"})
+    List<String> roles = jwsClaims.getBody()
         .get(ROLE_CLAIM, List.class);
 
     return UserInfo.builder()

@@ -2,8 +2,8 @@ package com.temzu.monomarket.models.mappers;
 
 import com.temzu.monomarket.dtos.ProductCreateDto;
 import com.temzu.monomarket.dtos.ProductDto;
-import com.temzu.monomarket.models.Product;
 import com.temzu.monomarket.dtos.ProductUpdateDto;
+import com.temzu.monomarket.models.Product;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

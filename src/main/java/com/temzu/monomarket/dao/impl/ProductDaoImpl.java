@@ -1,9 +1,9 @@
 package com.temzu.monomarket.dao.impl;
 
-import com.temzu.monomarket.models.Product;
-import com.temzu.monomarket.dao.repositories.ProductRepository;
 import com.temzu.monomarket.dao.ProductDao;
+import com.temzu.monomarket.dao.repositories.ProductRepository;
 import com.temzu.monomarket.exceptions.ResourceNotFoundException;
+import com.temzu.monomarket.models.Product;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
